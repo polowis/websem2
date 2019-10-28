@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link href="https://fonts.googleapis.com/css?family=Inconsolata|Montserrat:400,500,700&display=swap" rel="stylesheet">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" rel="stylesheet">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" rel="stylesheet">
+            <link href="../public/css/main.css" rel="stylesheet">
+        
+            <!--Import js files/libraries-->
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+            <script src="../public/js/app.js"></script>
+    </head>
+    <body onload="checkCookie()">
+
+            <div class="smooth">
+                    <header id="top">
+                        <h3><a href="../../index.html">ET</a></h3>
+                        <nav></nav>
+                        <ul>
+                            <li><a href="../../index.html" title="Home">Home</a></li>
+                            <li><a href="./team.html" title="Team">Team</a></li>
+                            <li><a href="#services" title="Services">Services</a></li>
+                            <li><a href="#news" title="News">News</a></li>
+                        </ul>
+                    </header>
+                    
+
+                    <section id="news">
+                            <h2>Available course</h2>
+                            <div class="grid g_three news">
+                                <div class="post">
+                                    <h3>JavaScript</h3>
+                                    <div class="date">1,009 learners</div>
+                                    <p>JavaScript is a programming language of the web, it is the most powerful tool in the field of programming. </p>
+                                    <div class=""></div><a href="quiz.html" style="color:red;">Join now</a></div>
+                                <div class="post">
+                                    <h3>Ruby on rails</h3>
+                                    <div class="date">704 learners</div>
+                                    <p>Learning to build a modern web application is daunting. Ruby on Rails makes it much easier and more fun. It includes everything you need to build fantastic applications, and you can learn it with the support of our large, friendly community.</p>
+                                    <div class=""></div><a href="quiz.html" style="color:red;">Join now</a></div>
+                                <div class="post">
+                                    <h3>C#</h3>
+                                    <div class="date">817 learners</div>
+                                    <p>Depending on your experience with programming, or with the C# language and .NET, you may wish to explore different sections of this guide.</p>
+                                    <div class=""></div><a href="quiz.html" style="color:red;">Join now</a></div>
+                                <div class="post">
+                                    <h3>Laravel</h3>
+                                    <div class="date">926 learners</div>
+                                    <p>Laravel is a web application framework with expressive, elegant syntax. We’ve already laid the foundation — freeing you to create without sweating the small things.</p>
+                                    <div class=""></div><a href="quiz.html" style="color:red;">Join now</a></div>
+                                <div class="post">
+                                    <h3>ExpressJS</h3>
+                                    <div class="date">2,016 learners</div>
+                                    <p>Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.</p>
+                                    <div class=""></div><a href="quiz.html" style="color:red;" >Join now</a></div>
+                                <div class="post">
+                                    <h3>Flutter (dart)</h3>
+                                    <div class="date">413 learners</div>
+                                    <p>Flutter is Google’s UI toolkit for building beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.</p>
+                                    <div class=""></div><a href="quiz.html" style="color:red;">Join now</a></div>
+                            </div>
+                    </section>
+                    <footer id="bottom">
+                            <div class="widgets">
+                            <div class="f_logo">
+                                <h3 class="foo_logo">ET Tech</h3></div>
+                           
+                            <div class="widget">
+                                <h5>Heading</h5>
+                                <ul>
+                                    <li>Forums</li>
+                                    <li>License</li>
+                                    <li>Guest Posting</li>
+                                    <li>Advertise</li>
+                                </ul>
+                            </div>
+                            <div class="widget">
+                                <h5>Heading</h5>
+                                <ul>
+                                    <li>Subscribe</li>
+                                    <li>Customers</li>
+                                    <li>FAQ</li>
+                                    <li>Support</li>
+                                </ul>
+                            </div>
+                            <div class="widget">
+                                <h5>Contacts</h5>
+                                <ul></ul>
+                                <li><i class="fa fa-map-o" aria-hidden="true"> </i></li> Autralia, Canberra - number
+                                <li><i class="fa fa-phone" aria-hidden="true"> </i></li> +12 345 678 910
+                                <li><i class="fa fa-envelope-o" aria-hidden="true"> </i></li> ETtech@email.com
+                            </div>
+                            <div class="copy"></div>
+                            <p>&copy; 2019 with <span class="heart">&#9829; </span><a href="https://github.com/polowis" target="_blank" rel="noopener noreferrer"> Polowis</a></p>
+                            <p><a href="#home">Back &#x2191; to top</a></p>
+                        </footer>
+                    </div>
+        <script>
+        function getCookie(c_name) {
+                if (document.cookie.length > 0) {
+                c_start = document.cookie.indexOf(c_name + "=");
+                if (c_start != -1) {
+                    c_start = c_start + c_name.length + 1;
+                    c_end = document.cookie.indexOf(";", c_start);
+                    if (c_end == -1) {
+                        c_end = document.cookie.length;
+                    }
+                    return unescape(document.cookie.substring(c_start, c_end))
+                        
+                }
+            }
+            return ""
+        
+       
+        }
+
+        function checkCookie(){
+            if(getCookie('email') == ''){
+                window.location.replace('../../index.html');
+            } else{
+                if(getCookie('email') != "admin@gmail.com"){
+                    window.location.replace('../../index.html');
+                }
+            }
+        }
+        </script>
+    </body>
+</html>

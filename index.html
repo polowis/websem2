@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Import css file/libraries-->
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Montserrat:400,500,700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" rel="stylesheet">
+    <link href="src/public/css/main.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
+
+    <!--Import js files/libraries-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <script src="src/public/js/app.js"></script>
+    <script type="text/javascript" id="cookieinfo" src="//cookieinfoscript.com/js/cookieinfo.min.js"></script>
+    <!--My own js libraries, developed 2 months ago-->
+    <script src="https://codepen.io/polowis/pen/ExxXRov.js"></script>
+
+</head>
+
+<body onload="checkCookie()">
+    <div class="smooth">
+    <header id="top">
+        <h3>ET</h3>
+        <nav></nav>
+        <ul>
+            <li><a href="/index.html" title="Home">Home</a></li>
+            <li><a href="./src/views/team.html" title="Team">Team</a></li>
+            <li><a href="#services" title="Services">Services</a></li>
+            <li><a href="#news" title="News">News</a></li>
+        </ul>
+    </header>
+    <main>
+        <section id="home" style="background-image: url(https://source.unsplash.com/featured/?technology)">
+        <div class="content">
+            <div>
+            <h1>ET Tech</h1>
+            <svg class="title">
+                <text x="0" y="40">ET Tech</text>
+                <path d="M 0 66 50 61"></path>
+            </svg>
+            <p class="lead">Want to find the best play to learn how to code? Our site is perfect for you
+                <a class="leadlink" href="#">The choice is</a> yours.</p>
+            <p class="lead">Apply your learning and test your knowledge, for more details you
+                <a class="leadlink" href="./src/views/team.html">can find here.</a></p>
+            </div>
+            <div class="blur">
+                <div id="select">
+                    <h3>You are logged in</h3>
+                    <a class="button">Click here to select available course</a>
+                </div>
+            <form id="login" action="./src/views/course.html" method="POST">
+                <input type="text" name="" id='email' filter="email" placeholder="Email:" value="admin@gmail.com" />
+                <input type="password" name="" id='password' placeholder="Password:" value="root" />
+                <a class="button" onclick="setCookie()">Click here</a>
+            </form>
+            </div>
+        </section>
+        <section id="about">
+        <h2>What others say about us </h2>
+        <p>We are a team of expert, we are building the education the world needs. </p>
+        <div class="autoplay">
+            <div class="block b_on">
+                <figure><img src="https://source.unsplash.com/random/200x200" alt="" />
+                    <figcaption>Bill Gates</figcaption>
+                </figure>
+                <p>This is an amazing website</p>
+            </div>
+            <div class="block b_tw">
+                <figure><img src="https://source.unsplash.com/random/200x200?1" alt="" />
+                    <figcaption>Mark Zukerberg</figcaption>
+                </figure>
+                <p>Better than my Facebook</p>
+            </div>
+            <div class="block b_th">
+                <figure><img src="https://source.unsplash.com/200x200/?2" alt="" />
+                    <figcaption>Larry Page</figcaption>
+                    
+                </figure>
+                <p>ET Tech should be on top of our search engine</p>
+            </div>
+            <div class="block b_fo">
+                <figure><img src="https://source.unsplash.com/200x200/?3" alt="" />
+                    <figcaption>Barack Obama</figcaption>
+                </figure>
+                <p>Brillant idea, this education system will change the way how we teach children</p>
+            </div>
+            <div class="block b_fi">
+                <figure><img src="https://source.unsplash.com/200x200/?4" alt="" />
+                    <figcaption>Albert Einstein</figcaption>
+                   
+                </figure>
+                <p>I hope I can live till this day to see these amazing guys. </p>
+            </div>
+        </div>
+        
+        <p>No other sites can compared to us.</p>
+        </section>
+        <section id="services">
+        <div class="grid g_two">
+            <div>
+            <h2>Services</h2>
+            <p>ET Tech is a education organization, ET is the best place for you to learn, to create and improve your learning experience. </p>
+            <br>
+            <p>We are updating our courses to provide you the best experience, here are something we are still updating </p>
+            <br>
+            <div class="flex column">
+            <div class="flex column">
+                <div class="flex bar_val">
+                    <h3>Python</h3><span>77%</span></div>
+                <progress value="77" max="100"></progress>
+            </div>
+            <div class="flex column">
+                <div class="flex bar_val">
+                    <h3>Ruby on rails</h3><span>65%</span></div>
+                <progress value="65" max="100"></progress>
+            </div>
+            <div class="flex column">
+                <div class="flex bar_val">
+                    <h3>Machine learning</h3><span>88%</span></div>
+                <progress value="88" max="100"></progress>
+            </div>
+            <div class="flex column">
+                <div class="flex bar_val">
+                    <h3>Bash/shell</h3><span>80%</span></div>
+                <progress value="80" max="100"></progress>
+            </div>
+        </div>
+            </div>
+
+        </div>
+        </section>
+        <section id="news">
+        <h2>News</h2>
+        <div class="grid g_three news">
+            <div class="post">
+                <h3>FilterJS</h3>
+                <div class="date">December, 2019</div>
+                <p>FilterJS is now out!. FilterJS is a JavaScript library developed by our developers. It aims to improve html data filter and support various types of validation</p>
+                <div class=""></div><a href="./src/views/news.html">Read more</a></div>
+            <div class="post">
+                <h3>Iruna Global Stall</h3>
+                <div class="date">October, 2019</div>
+                <p>A new trading system for Iruna online is out, this system aims to improve the marketplace of the community. We use different tools and language to build this site. </p>
+                <div class=""></div><a href="./src/views/news.html">Read more</a></div>
+            <div class="post">
+                <h3>AI neko-chan</h3>
+                <div class="date">March 2019</div>
+                <p>One of our developers has delivered to the community an AI chatbot for discord using discord API. The bot is now being used by more than 2,000 people. </p>
+                <div class=""></div><a href="./src/views/news.html">Read more</a></div>
+            <div class="post">
+                <h3>iSport</h3>
+                <div class="date">February, 2019</div>
+                <p>We release our iSport social media today using expressJS. It is a social media website for people who love playing sport and try to find other people to play with</p>
+                <div class=""></div><a href="./src/views/news.html">Read more</a></div>
+            <div class="post">
+                <h3>Google</h3>
+                <div class="date">January, 2019</div>
+                <p>We love to hear what people say about us to improve our website. Here is what Google says about us.</p>
+                <div class=""></div><a href="./src/views/news.html">Read more</a></div>
+            <div class="post">
+                <h3>RatonJS</h3>
+                <div class="date">December, 2018</div>
+                <p>A JavaScript library that let you use api to collect information from all over the world</p>
+                <div class=""></div><a href="./src/views/news.html">Read more</a></div>
+        </div>
+        </section>
+    
+    </main>
+    <footer id="bottom">
+        <div class="widgets">
+        <div class="f_logo">
+            <h3 class="foo_logo">ET Tech</h3></div>
+       
+        <div class="widget">
+            <h5>Heading</h5>
+            <ul>
+                <li>Forums</li>
+                <li>License</li>
+                <li>Guest Posting</li>
+                <li>Advertise</li>
+            </ul>
+        </div>
+        <div class="widget">
+            <h5>Heading</h5>
+            <ul>
+                <li>Subscribe</li>
+                <li>Customers</li>
+                <li>FAQ</li>
+                <li>Support</li>
+            </ul>
+        </div>
+        <div class="widget">
+            <h5>Contacts</h5>
+            <ul></ul>
+            <li><i class="fa fa-map-o" aria-hidden="true"> </i></li> Autralia, Canberra - number
+            <li><i class="fa fa-phone" aria-hidden="true"> </i></li> +12 345 678 910
+            <li><i class="fa fa-envelope-o" aria-hidden="true"> </i></li> ETtech@email.com
+        </div>
+        <div class="copy"></div>
+        <p>&copy; 2019 with <span class="heart">&#9829; </span><a href="https://github.com/polowis" target="_blank" rel="noopener noreferrer"> Polowis</a></p>
+        <p><a href="#home">Back &#x2191; to top</a></p>
+    </footer>
+    </div>
+    <script>
+        function setCookie(){
+            const email = $('#email').val();
+            const password = $('#password').val();
+            if(password == 'root' && email == 'admin@gmail.com'){
+                store();
+                document.cookie = `email=${email}`;
+                window.location.href = './src/views/course.html'
+            }
+            else{
+                $('login').submit(function(e){
+                    return false;
+                })
+            }
+           
+        }
+        
+
+        function store(){
+            localStorage.setItem('email', 'admin@gmail.com');
+            localStorage.setItem('password', 'root');
+        }
+        function getCookie(c_name) {
+                if (document.cookie.length > 0) {
+                c_start = document.cookie.indexOf(c_name + "=");
+                if (c_start != -1) {
+                    c_start = c_start + c_name.length + 1;
+                    c_end = document.cookie.indexOf(";", c_start);
+                    if (c_end == -1) {
+                        c_end = document.cookie.length;
+                    }
+                    return unescape(document.cookie.substring(c_start, c_end))
+                        
+                }
+            }
+            return ""
+        
+       
+        }
+
+        function checkCookie(){
+            if(getCookie('email') == ''){
+                $("#select").hide();
+                $("#login").show();
+            } else{
+                if(getCookie('email') != "admin@gmail.com"){
+                   $("#select").hide();
+                   $("#login").show();
+                }else{
+                    $("#login").hide();
+                    $("#select").show()
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

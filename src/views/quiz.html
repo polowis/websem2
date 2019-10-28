@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link href="https://fonts.googleapis.com/css?family=Inconsolata|Montserrat:400,500,700&display=swap" rel="stylesheet">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" rel="stylesheet">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <link href="../public/css/main.css" rel="stylesheet">
+        
+            <!--Import js files/libraries-->
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+            <script src="../public/js/app.js"></script>
+            <script src="../public/js/auth.js"></script>
+
+             <!--My own js libraries, developed 2 months ago-->
+            <script src="https://codepen.io/polowis/pen/ExxXRov.js"></script>
+    </head>
+    <body onload="checkCookie()">
+    <div class="smooth">
+            <header id="top">
+                <h3><a href="../../index.html">ET</a></h3>
+                <nav></nav>
+                <ul>
+                    <li><a href="../../index.html" title="Home">Home</a></li>
+                    <li><a href="./team.html" title="Team">Team</a></li>
+                    <li><a href="#services" title="Services">Services</a></li>
+                    <li><a href="#news" title="News">News</a></li>
+                </ul>
+            </header>
+
+            <section id="services">
+                <h3>Take a few test so we can find the best course level for you</h3>
+                <br>
+                <form id="myForm">
+                        <div class="form-group">
+                          <label for="exampleFormControlInput1">Your full name</label>
+                          <input filter="alpha" class="form-control" id="exampleFormControlInput1" placeholder="username">
+                        </div>
+                        <br>
+                        <div class="form-group" id="q1">
+                                
+
+                          <label for="exampleFormControlSelect1">How to insert JS to html document?</label>
+                          <select class="form-control" id="exampleFormControlSelect1">
+                            <option value="html">html tag</option>
+                            <option value="script">script tag</option>
+                            <option value="javascript">javascript tag</option>
+                            <option value="noscript">noscript tag</option>
+                          </select>
+                        </div>
+                        <div class="form-group" id="q2">
+                          <label for="exampleFormControlSelect2">Which of the following allow you to define variable in javascript</label>
+                          <select class="form-control" id="exampleFormControlSelect2">
+                            <option>let</option>
+                            <option>datatype</option>
+                            <option>variable</option>
+                            <option>null</option>
+                          </select>
+                        </div>
+                        <div class="form-group" id="q3">
+                            <label for="exampleFormControlSelect2">Which of the following allow you get the element from html by id</label>
+                            <select class="form-control" id="exampleFormControlSelect2">
+                                <option>document.getElementbyId()</option>
+                                <option>document.getElementbyClassName()</option>
+                                <option>document.getElementByTag()</option>
+                                <option>document.getElementByName()</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="q4">
+                                <label for="exampleFormControlSelect2">In javascript, 0.1+0.2 = 0.3, true or false?</label>
+                                <select class="form-control" id="exampleFormControlSelect2">
+                                    <option>true</option>
+                                    <option>false</option>
+                                </select>
+                            </div>
+                            <button type="submit" onclick="check()">Submit</button>
+                      </form>
+                      <br>
+                      <div id="course">
+                        <h3>We think these guides suit you the best</h3>
+                        <a href="learn1.html">Async/await</a>
+                      </div>
+                      <br>
+                      <br>
+            </section>
+            <footer id="bottom">
+                <div class="widgets">
+                <div class="f_logo">
+                    <h3 class="foo_logo">ET Tech</h3></div>
+               
+                <div class="widget">
+                    <h5>Heading</h5>
+                    <ul>
+                        <li>Forums</li>
+                        <li>License</li>
+                        <li>Guest Posting</li>
+                        <li>Advertise</li>
+                    </ul>
+                </div>
+                <div class="widget">
+                    <h5>Heading</h5>
+                    <ul>
+                        <li>Subscribe</li>
+                        <li>Customers</li>
+                        <li>FAQ</li>
+                        <li>Support</li>
+                    </ul>
+                </div>
+                <div class="widget">
+                    <h5>Contacts</h5>
+                    <ul></ul>
+                    <li><i class="fa fa-map-o" aria-hidden="true"> </i></li> Autralia, Canberra - number
+                    <li><i class="fa fa-phone" aria-hidden="true"> </i></li> +12 345 678 910
+                    <li><i class="fa fa-envelope-o" aria-hidden="true"> </i></li> ETtech@email.com
+                </div>
+                <div class="copy"></div>
+                <p>&copy; 2019 with <span class="heart">&#9829; </span><a href="https://github.com/polowis" target="_blank" rel="noopener noreferrer"> Polowis</a></p>
+                <p><a href="#top">Back &#x2191; to top</a></p>
+            </footer>
+            <script>
+              $("#course").hide();
+              function check(){
+                 $("#myForm").click(function(e){
+                   e.preventDefault();
+                 });
+                //form.addEventListener("submit", cancelSubmit, true);
+                const quiz1 = $('#q1').find(":selected").text();
+                const quiz2 = $('#q2').find(":selected").text();
+                const quiz3 = $('#q3').find(":selected").text();
+                const quiz4 = $('#q4').find(":selected").text();
+                if(quiz1 != "script tag"){
+                    $('#qu1').remove();
+                    let error = $("<div class='alert alert-danger'>The correct answer is script tag</div>")
+                    $('#q1').append(error);
+                    error.attr('id', 'qu1');
+                }
+                else{
+                  $('#qu1').remove();
+                  let success = $("<div class='alert alert-success'>The correct answer is script tag</div>")
+                  $('#q1').append(success);
+                  success.attr('id', 'qu1');
+
+                }
+
+                if(quiz2 != "let"){
+                  $('#qu2').remove();
+                  let error = $("<div class='alert alert-danger'>The correct answer is let</div>")
+                  $("#q2").append(error);
+                  error.attr('id', 'qu2');
+                }
+                else{
+                  $('#qu2').remove();
+                  let success = $("<div class='alert alert-success'>The correct answer is let</div>")
+                  $("#q2").append(success);
+                  success.attr('id', 'qu2');
+                }
+                if(quiz3 != "document.getElementbyId()"){
+                  $('#qu3').remove();
+                  let error = $("<div class='alert alert-danger'>The correct answer is document.getElementbyId()</div>")
+                  $("#q3").append(error);
+                  error.attr('id', 'qu3');
+                }
+                else{
+                  $('#qu3').remove();
+                  let success = $("<div class='alert alert-success'>The correct answer is document.getElementbyId()</div>")
+                  $("#q3").append(success);
+                  success.attr('id', 'qu3');
+                }
+                if(quiz4 != "false"){
+                  $('#qu4').remove();
+                  let error = $("<div class='alert alert-danger'>The correct answer is false</div>")
+                  $("#q4").append(error);
+                  error.attr('id', 'qu4');
+                }
+                else{
+                  $('#qu4').remove();
+                  let success = $("<div class='alert alert-success'>The correct answer is false</div>")
+                  $("#q4").append(success);
+                  success.attr('id', 'qu4');
+                }
+                $("#course").show();
+              }
+
+            
+                
+                
+                
+            </script>
+
+            </div>
+            </body>
+            </html>
