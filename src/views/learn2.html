@@ -125,7 +125,57 @@ pow(x, n) =
                                                                 4.After it ends, the old execution context is retrieved from the stack, and the outer function is resumed from where it stopped. <br><br>
                                                                 Let’s see what happens during the pow(2, 3) call.</p>
                                                                 <h6 style="margin:30px">pow(2, 3)</h6>
+                                                                <p>In the beginning of the call pow(2, 3) the execution context will store variables: x = 2, n = 3, the execution flow is at line 1 of the function.</p>
+                                                                <p>That’s when the function starts to execute. The condition n == 1 is false, so the flow continues into the second branch of if:</p>
+                                                                <pre><code>function pow(x, n) {
+        if (n == 1) {
+                return x;
+        } else {
+                return x * pow(x, n - 1);
+        }
+}
+                                                                              
+alert( pow(2, 3) );</code></pre>
+                        <h4 style="margin:30px">Summary</h4>
+                        <p><i>Recursion</i> is a programming term that means calling a function from itself. Recursive functions can be used to solve tasks in elegant ways. <br> <br>
+
+                                        When a function calls itself, that’s called a recursion step. The basis of recursion is function arguments that make the task so simple that the function does not make further calls.</p>
+
                 </article>
+                <footer id="bottom">
+                                <div class="widgets">
+                                <div class="f_logo">
+                                    <h3 class="foo_logo">ET Tech</h3></div>
+                               
+                                <div class="widget">
+                                    <h5>Heading</h5>
+                                    <ul>
+                                        <li>Forums</li>
+                                        <li>License</li>
+                                        <li>Guest Posting</li>
+                                        <li>Advertise</li>
+                                    </ul>
+                                </div>
+                                <div class="widget">
+                                    <h5>Heading</h5>
+                                    <ul>
+                                        <li>Subscribe</li>
+                                        <li>Customers</li>
+                                        <li>FAQ</li>
+                                        <li>Support</li>
+                                    </ul>
+                                </div>
+                                <div class="widget">
+                                    <h5>Contacts</h5>
+                                    <ul></ul>
+                                    <li><i class="fa fa-map-o" aria-hidden="true"> </i></li> Autralia, Canberra - number
+                                    <li><i class="fa fa-phone" aria-hidden="true"> </i></li> +12 345 678 910
+                                    <li><i class="fa fa-envelope-o" aria-hidden="true"> </i></li> ETtech@email.com
+                                </div>
+                                <div class="copy"></div>
+                                <p>&copy; 2019 with <span class="heart">&#9829; </span><a href="https://github.com/polowis" target="_blank" rel="noopener noreferrer"> Polowis</a></p>
+                                <p><a href="#home">Back &#x2191; to top</a></p>
+                            </footer>
         </div>
     </body>
     </html>
