@@ -1,3 +1,10 @@
+
+/**
+ * 
+ * @function get cookie by name
+ * @param {*} cookie_name 
+ * @returns cookie's value
+ */
 function getCookie(c_name) {
     if (document.cookie.length > 0) {
     c_start = document.cookie.indexOf(c_name + "=");
@@ -15,7 +22,7 @@ return ""
 
 
 }
-
+// check if user is logged in, redirect to home page if not logged in. 
 function checkCookie(){
 if(getCookie('email') == ''){
     window.location.replace('../../index.html');

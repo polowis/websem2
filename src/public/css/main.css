@@ -364,15 +364,6 @@
     background-color: #312d3c;
     transform: translateY(-10px);
   }
-  section#letter {
-    min-height: 50vh;
-  }
-  section#letter form {
-    margin-top: 1em;
-    width: 80%;
-    flex-direction: column;
-    justify-content: space-around;
-  }
   @media (min-width: 768px) {
     section#letter form {
       flex-direction: row;
@@ -399,76 +390,6 @@
     section#letter form input[type='text'] {
       width: 45%;
     }
-  }
-  section#testimonials .slick-slide {
-    text-align: center;
-  }
-  section#testimonials .slick-slide:focus {
-    outline: none;
-  }
-  section#testimonials .slick-slide div div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  section#testimonials .slick-slide div div img {
-    margin: 0 auto 1em;
-    border-radius: 0.5em;
-  }
-  section#testimonials .slick-slide .blockquote {
-    position: relative;
-    /*overflow: hidden;*/
-    margin-top: 1.5em;
-    padding: 1em 2em;
-    border-radius: 1em;
-    border: 4px solid #312d3c;
-    transition: all 0.2s linear;
-  }
-
-  section#news .post {
-    padding: 0.25em 0.5em;
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: space-between;
-    border: 4px solid transparent;
-    border-radius: 0.35em;
-    transition: transform 0.2s linear;
-  }
-  section#news .post h3 {
-    margin: 0;
-  }
-  section#news .post h3:hover {
-    color: #dfda23;
-  }
-  section#news .post .date {
-    color: #666;
-  }
-  section#news .post .tags {
-    position: relative;
-    padding: 0.5em 0;
-    padding-left: 30px;
-    border-top: 1px solid #312d3c;
-    color: #666;
-  }
-  section#news .post .tags a {
-    color: #666;
-  }
-  section#news .post .tags::before {
-    position: absolute;
-    left: 0;
-    content: '\f02c';
-    font-family: 'FontAwesome';
-  }
-  section#news .post p {
-    margin: 0;
-  }
-  section#news .post:hover {
-    transform: scale(0.98);
-    background-color: #191a1d;
-  }
-  section#news .post:hover:hover h3 {
-    color: #dfda23;
   }
   .grid {
     display: grid;

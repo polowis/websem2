@@ -98,7 +98,7 @@
             </div>
         </div>
         
-        <p>No other sites can compared to us.</p>
+        <p>No other sites can compare to us.</p>
         </section>
         <section id="services">
         <div class="grid g_two">
@@ -207,12 +207,37 @@
     </footer>
     </div>
     <script>
+        const cipher = salt => {
+            let textToChars = text => text.split('').map(c => c.charCodeAt(0))
+            let byteHex = n => ("0" + Number(n).toString(16)).substr(-2)
+            let applySaltToChar = code => textToChars(salt).reduce((a,b) => a ^ b, code)    
+
+            return text => text.split('')
+                        .map(textToChars)
+                        .map(applySaltToChar)
+                        .map(byteHex)
+                        .join('')
+        }
+
+        const decipher = salt => {
+            let textToChars = text => text.split('').map(c => c.charCodeAt(0))
+            let saltChars = textToChars(salt)
+            let applySaltToChar = code => textToChars(salt).reduce((a,b) => a ^ b, code)
+            return encoded => encoded.match(/.{1,2}/g)
+                .map(hex => parseInt(hex, 16))
+                .map(applySaltToChar)
+                .map(charCode => String.fromCharCode(charCode))
+                .join('')
+}
+        // set cookie for user
         function setCookie(){
             const email = $('#email').val();
             const password = $('#password').val();
             if(password == 'root' && email == 'admin@gmail.com'){
                 store();
+                let key = cipher('password');
                 document.cookie = `email=${email}`;
+                document.cookie = `key=${key('root')}`;
                 window.location.href = './src/views/course.html'
             }
             else{
@@ -223,7 +248,7 @@
            
         }
         
-
+        // store information into local storage
         function store(){
             localStorage.setItem('email', 'admin@gmail.com');
             localStorage.setItem('password', 'root');
@@ -245,7 +270,7 @@
         
        
         }
-
+        // check if the user is logged in
         function checkCookie(){
             if(getCookie('email') == ''){
                 $("#select").hide();
