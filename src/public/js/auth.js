@@ -23,6 +23,13 @@ return ""
 
 }
 // check if user is logged in, redirect to home page if not logged in. 
+
+/**
+ * 
+ * @function checkCookie
+ * @description check if cookie is set
+ * @returns url
+ */
 function checkCookie(){
 if(getCookie('email') == ''){
     window.location.replace('../../index.html');
