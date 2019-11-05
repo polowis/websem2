@@ -169,6 +169,8 @@
                 <div class=""></div><a href="./src/views/news.html">Read more</a></div>
         </div>
         </section>
+        <button class="button" id="newtheme" onclick="changeTheme('#0764FD')">new theme</button>
+        <button class="button" id="defaulttheme" onclick="changeTheme('#191a1d')">default theme</button>
     
     </main>
     <footer id="bottom">
@@ -205,8 +207,19 @@
         <p>&copy; 2019 with <span class="heart">&#9829; </span><a href="https://github.com/polowis" target="_blank" rel="noopener noreferrer"> Polowis</a></p>
         <p><a href="#home">Back &#x2191; to top</a></p>
     </footer>
+
     </div>
+    
     <script>
+        window.addEventListener('load', checkTheme, true)
+        function changeTheme(color){
+            document.cookie = `theme=${color}`
+            $('body').css('background-color', color)
+            $('header').css('background-color', color)
+            $('section').css('background-color', color)
+            $('footer').css('background-color', color)
+        }
+
         const cipher = salt => {
             let textToChars = text => text.split('').map(c => c.charCodeAt(0))
             let byteHex = n => ("0" + Number(n).toString(16)).substr(-2)
@@ -285,6 +298,27 @@
                 }
             }
         }
+        function checkTheme(){
+            if(getCookie('theme') == ""){
+                $('#defaulttheme').hide()
+                $('#newtheme').show()
+                changeTheme('#191a1d')
+
+            }
+            else{
+                if(getCookie('theme') == "#0764FD"){
+                    $('#defaulttheme').show()
+                    $('#newtheme').hide()
+                    changeTheme('#0764FD')
+                }
+                else{
+                    $('#defaulttheme').hide()
+                    $('#newtheme').show()
+                    changeTheme('#191a1d')
+                }
+            }
+        }
+        
     </script>
 </body>
 
