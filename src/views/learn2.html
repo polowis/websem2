@@ -185,5 +185,17 @@ alert( pow(2, 3) );</code></pre>
                                 <p><a href="#top">Back &#x2191; to top</a></p>
                             </footer>
         </div>
+        <script>
+        function callback () {
+                console.log(this.responseText);
+        };
+        let request = new XMLHttpRequest();
+        request.onload = callback;
+        request.open("post", "http://localhost:3000/check");
+        let formData = new FormData();
+        request.setRequestHeader("Content-Type", "application/json");
+        request.send('{"my_data":"back to basics"}');
+        
+        </script>
     </body>
     </html>

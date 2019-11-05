@@ -10,6 +10,7 @@
             <link href="../public/css/main.css" rel="stylesheet">
             <link href="../public/css/code.css" rel="stylesheet">
             <link href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
+            <link rel="stylesheet" href="../lib/codemirror.css">
         
             <!--Import js files/libraries-->
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -27,6 +28,9 @@
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css">
             <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
             <script type="text/javascript" src="../public/js/theme.js"></script>
+            <script src="../lib/codemirror.js"></script>
+            <script src="../mode/javascript/javascript.js"></script>
+            
     </head>
     <body onload="checkCookie()">
             <script>hljs.initHighlightingOnLoad();</script>
@@ -139,6 +143,27 @@ showAvatar();</code></pre>
                         
                         With async/await we rarely need to write promise.then/catch, but we still shouldn’t forget that they are based on promises, because sometimes (e.g. in the outermost scope) we have to use these methods. Also Promise.all is a nice thing to wait for many tasks simultaneously.
                     </p>
+                    
+                    <h4 style="margin: 30px">Tasks</h4>
+                    <p>Write a function to calculate the sum of variable a and b</p>
+                    <div style="margin:30px;">
+                        <textarea id="code" name="code">
+function calculate(a, b){
+   return a + b
+}
+let a = 5
+let b = 10
+calculate(a, b)
+                    </textarea>
+                   
+                </div>
+                <button class="btn btn-success" onclick="checkResult()">Run</button>
+                <p>Output</p>
+                <div style="margin:30px;"><textarea id="result" class="code">
+
+                </textarea></div>
+                <h6 style="margin:30px;" id="success" class="alert alert-success">Completed</h6>
+                <h6 style="margin:30px;" id="fail" class="alert alert-danger">Completed</h6>
                     <footer id="bottom">
                             <div class="widgets">
                             <div class="f_logo">
@@ -177,7 +202,35 @@ showAvatar();</code></pre>
 
 
         <script>
-        
+        $('#success').hide()
+        $('#fail').hide()
+            let editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+                    lineNumbers: true,
+                    matchBrackets: true,
+      });
+      
+        function checkResult(){
+            let code = $("#code").val()
+            if (eval(code) === 15){
+                    $("#result").val('15')
+                    $('#success').show()
+                    $('#fail').hide()
+                }
+            try {
+                eval(code); 
+                
+            } catch (e) {
+                    if (e instanceof SyntaxError) {
+                        $("#result").val(e.message)
+                        $('#fail').show()
+                        $('#success').hide()
+            }
+}
+            
+            
+            
+        }
+            
         </script>
         </body>
         </html>
