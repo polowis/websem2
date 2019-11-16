@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link href="https://fonts.googleapis.com/css?family=Inconsolata|Montserrat:400,500,700&display=swap" rel="stylesheet">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" rel="stylesheet">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <link href="../public/css/main.css" rel="stylesheet">
+            <link href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
+        
+            <!--Import js files/libraries-->
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            <script src="../public/js/sortingVisualise.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+            <script type="text/javascript" id="cookieinfo" src="//cookieinfoscript.com/js/cookieinfo.min.js"></script>
+    </head>
+    <body>
+        <style>
+            .compare {
+              font-weight: bold;
+              color:#55FD07;
+            }
+            .swap {
+              font-weight: bold;
+              color: #8C0AF1;
+            }
+            body{
+                background-color: #191a1d;
+                color: white;
+            }
+          </style>
+          <div class="smooth">
+                <header id="top">
+                        <h3><a href="../../index.html">ET</a></h3>
+                        <ul>
+                            <li><a href="../../index.html" title="Home">Home</a></li>
+                            <li><a href="./team.html" title="Team">Team</a></li>
+                            <li><a href="#services" title="Services">Services</a></li>
+                            <li><a href="./news.html" title="News">News</a></li>
+                        </ul>
+                </header>
+                <br>
+               <section id="about">
+                   <h2>Code playground</h2>
+                   <p>Use this to test our different sorting algorithm</p>
+               </section>
+            <article>
+            <div class='container-fluid'>
+                <div class='row'>
+                  <div class='col-xs-3'>
+                    <div class='form-group'>
+                      <label for='#array-size'>Array Size</label>
+                      <input id='array-size' class='form-control' type='number' value="50"/>
+                    </div>
+                    <div class='form-group'>
+                      <label for='#algorithm-select'>Algorithm</label>
+                      <select class='form-control' id='algo-select'>
+                        <option value='bubblesort'>Bubble sort</option>
+                        <option value='selectionsort'>Selection sort</option>
+                        <option value='insertionsort'>Insertion sort</option>
+                        <option value='odd_even_sort'>Odd-even sort</option>
+                        <option value='cocktail_sort'>Cocktail sort</option>
+                        <option value='quicksort'>Quicksort</option>
+                        <option value='heapsort'>Heapsort</option>
+                        <option value='mergesort'>Merge sort</option>
+                        <option value='bitonicsort'>Bitonic sort</option>
+                        <option value='introsort'>Introsort</option>
+                      </select>
+                    </div>
+                    <div class='form-group'>
+                      <label for='#init-select'>Initial array</label>
+                      <select class='form-control' id='init-select'>
+                        <option value='random'>Random</option>
+                        <option value='sorted'>Sorted</option>
+                        <option value='reversed'>Reversed</option>
+                      </select>
+                    </div>
+                    <div class='form-group' id='pivot-select-div'>
+                      <label for='#pivot-select'>Choice</label>
+                      <select class='form-control' id='pivot-select'>
+                        <option value='random'>Random</option>
+                      </select>
+                    </div>
+                    <div class='form-group'>
+                      <label for='#interval'>Interval (ms)</label>
+                      <input id='interval' class='form-control' type='number' value="30"/>
+                    </div>
+                    <p class='text-muted'>
+                        <strong>Note</strong>
+                        <br>
+                      Comparisons are <span class='compare'>Purple</span>,
+                      <br>
+                      swaps are <span class='swap'>Green</span>.
+                    </p>
+                    <div class='text-center'>
+                      <button class='btn btn-lg btn-success' id='start'>Sort</button>
+                    </div>
+                  </div>
+                  <div class='col-xs-9' id='canvas-div'>
+                    <canvas width="800px" height="600px" id="main-canvas">
+                  </div>
+                </div>
+              </div>
+              <script>
+                $(function() {
+                  let arraySort = null;
+                  let resize_canvas = function() {
+                    $('#main-canvas').width($('#canvas-div').width());
+                  }
+                  resize_canvas();
+                  $(window).resize(resize_canvas);
+                  // Disable / enable the pivot select as needed
+                  let update_pivot_select = function() {
+                    let algo = $('#algo-select').val();
+                    let pivot_algo = sortingVisualize.is_pivot_algo(algo);
+                    $('#pivot-select').prop('disabled', !pivot_algo);
+                    $('#pivot-select-div').toggleClass('hidden', !pivot_algo);
+                  }
+                  update_pivot_select();
+                  $('#algo-select').change(update_pivot_select);
+                  $('#start').click(function() {
+                    if (arraySort !== null) arraySort.kill();
+                    let arraySize = parseInt($('#array-size').val());
+                    let interval = parseInt($('#interval').val());
+                    let algorithm = $('#algo-select').val();
+                    let pivot_type = $('#pivot-select').val();
+                    let sort_fn = sortingVisualize.get_sort_fn(algorithm, pivot_type);
+                    if (algorithm === 'bitonicsort') {
+                      // Round up to the nearest power of 2
+                      let n2 = 1;
+                      while (n2 < arraySize) n2 *= 2;
+                      $('#array-size').val(n2);
+                      arraySize = n2;
+                    }
+                    let array = [];
+                    for (let i = 0; i < arraySize; i++) {
+                      array.push(Math.random() - 0.5);
+                    }
+                    let init = $('#init-select').val();
+                    if (init === 'sorted') {
+                      array.sort(function(a, b) { return a - b; });
+                    } else if (init === 'reversed') {
+                      array.sort(function(a, b) {return b - a; });
+                    }
+                    let canvas = document.getElementById('main-canvas');
+                    arraySort = new sortingVisualize.Animate(array, canvas, interval);
+                    sort_fn(arraySort);
+                  });
+                });
+              </script>
+              </article>
+              <footer id="bottom">
+                    <div class="widgets">
+                    <div class="f_logo">
+                        <h3 class="foo_logo">ET Tech</h3></div>
+                   
+                    <div class="widget">
+                        <h5>Heading</h5>
+                        <ul>
+                            <li>Forums</li>
+                            <li>License</li>
+                            <li>Guest Posting</li>
+                            <li>Advertise</li>
+                        </ul>
+                    </div>
+                    <div class="widget">
+                        <h5>Heading</h5>
+                        <ul>
+                            <li>Subscribe</li>
+                            <li>Customers</li>
+                            <li>FAQ</li>
+                            <li>Support</li>
+                        </ul>
+                    </div>
+                    <div class="widget">
+                        <h5>Contacts</h5>
+                        <ul></ul>
+                        <li><i class="fa fa-map-o" aria-hidden="true"> </i></li> Autralia, Canberra - number
+                        <li><i class="fa fa-phone" aria-hidden="true"> </i></li> +12 345 678 910
+                        <li><i class="fa fa-envelope-o" aria-hidden="true"> </i></li> ETtech@email.com
+                    </div>
+                    <div class="copy"></div>
+                    <p>&copy; 2019 with <span class="heart">&#9829; </span><a href="https://github.com/polowis" target="_blank"> Polowis</a></p>
+                    <p><a href="#home">Back &#x2191; to top</a></p>
+                </footer>
+            </div>
+    </body>
+</html>
