@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link href="https://fonts.googleapis.com/css?family=Inconsolata|Montserrat:400,500,700&display=swap" rel="stylesheet">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" rel="stylesheet">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <link href="../public/css/main.css" rel="stylesheet">
+            <link href="../public/css/code.css" rel="stylesheet">
+            <link href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
+        
+            <!--Import js files/libraries-->
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+            <script src="../public/js/app.js"></script>
+            
+            <script type="text/javascript" id="cookieinfo" src="//cookieinfoscript.com/js/cookieinfo.min.js"></script>
+
+             <!--My own js library, developed 2 months ago-->
+            <script src="../public/js/filter.js"></script>
+            <!--https://github.com/polowis/filterjs [link to repo with usage]-->
+           
+
+            
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css">
+            <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+            
+    </head>
+    <body>
+            <div class="smooth">
+                    <header id="top">
+                            <h3><a href="../../index.html">ET</a></h3>
+                            <ul>
+                                <li><a href="../../index.html" title="Home">Home</a></li>
+                                <li><a href="./team.html" title="Team">Team</a></li>
+                                <li><a href="#services" title="Services">Services</a></li>
+                                <li><a href="./news.html" title="News">News</a></li>
+                                <li><a href="./sorting.html">Code Playground</a></li>
+                            </ul>
+                    </header>
+                    <br>
+                   <section id="about">
+                        <form>
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Email address</label>
+                                  <input type="email" filter="email" id="email" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleInputPassword1">Password</label>
+                                  <input type="password" required id="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                </div>
+                                <div class="form-group form-check" >
+                                  <input type="checkbox" class="form-check-input" required id="exampleCheck1">
+                                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="register">Submit</button>
+                              </form>
+                   </section>
+            
+                   <footer id="bottom">
+                        <div class="widgets">
+                        <div class="f_logo">
+                            <h3 class="foo_logo">ET Tech</h3></div>
+                       
+                        <div class="widget">
+                            <h5>Heading</h5>
+                            <ul>
+                                <li>Forums</li>
+                                <li>License</li>
+                                <li>Guest Posting</li>
+                                <li>Advertise</li>
+                            </ul>
+                        </div>
+                        <div class="widget">
+                            <h5>Heading</h5>
+                            <ul>
+                                <li>Subscribe</li>
+                                <li>Customers</li>
+                                <li>FAQ</li>
+                                <li>Support</li>
+                            </ul>
+                        </div>
+                        <div class="widget">
+                            <h5>Contacts</h5>
+                            <ul></ul>
+                            <li><i class="fa fa-map-o" aria-hidden="true"> </i></li> Autralia, Canberra - number
+                            <li><i class="fa fa-phone" aria-hidden="true"> </i></li> +12 345 678 910
+                            <li><i class="fa fa-envelope-o" aria-hidden="true"> </i></li> ETtech@email.com
+                        </div>
+                        <div class="copy"></div>
+                        <p>&copy; 2019 with <span class="heart">&#9829; </span><a href="https://github.com/polowis" target="_blank"> Polowis</a></p>
+                        <p><a href="#home">Back &#x2191; to top</a></p>
+                    </footer>
+
+                    <script>
+                        $('#register').click(function(){
+                            const cipher = salt => {
+                                let textToChars = text => text.split('').map(c => c.charCodeAt(0))
+                                let byteHex = n => ("0" + Number(n).toString(16)).substr(-2)
+                                let applySaltToChar = code => textToChars(salt).reduce((a,b) => a ^ b, code)    
+
+                                return text => text.split('')
+                                            .map(textToChars)
+                                            .map(applySaltToChar)
+                                            .map(byteHex)
+                                            .join('')
+                            }
+
+                            const decipher = salt => {
+                                let textToChars = text => text.split('').map(c => c.charCodeAt(0))
+                                let saltChars = textToChars(salt)
+                                let applySaltToChar = code => textToChars(salt).reduce((a,b) => a ^ b, code)
+                                return encoded => encoded.match(/.{1,2}/g)
+                                    .map(hex => parseInt(hex, 16))
+                                    .map(applySaltToChar)
+                                    .map(charCode => String.fromCharCode(charCode))
+                                    .join('')
+                    }       
+                        if($('#password').val() != "" && $('#email').val() != ""){
+                            password = $('#password').val()
+                            let key = cipher('password');
+                            localStorage.setItem('email_domain', $('#email').val())
+                            localStorage.setItem('password_domain', key(password))
+        
+                            window.location.replace('/index.html');
+                        }
+                        
+
+
+                })
+                    </script>
+    </body>

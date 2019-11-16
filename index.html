@@ -11,14 +11,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" rel="stylesheet">
     <link href="src/public/css/main.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
-
+    
     <!--Import js files/libraries-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
     <script src="src/public/js/app.js"></script>
     <script type="text/javascript" id="cookieinfo" src="//cookieinfoscript.com/js/cookieinfo.min.js"></script>
     <!--My own js libraries, developed 2 months ago-->
-    <script src="https://codepen.io/polowis/pen/ExxXRov.js"></script>
+    <script src="../public/js/filter.js"></script>
 
 </head>
 
@@ -32,6 +32,7 @@
             <li><a href="./src/views/team.html" title="Team">Team</a></li>
             <li><a href="#services" title="Services">Services</a></li>
             <li><a href="#news" title="News">News</a></li>
+            <li><a href="/src/views/sorting.html">Code Playground</a></li>
         </ul>
     </header>
     <main>
@@ -58,6 +59,8 @@
                 <input type="password" name="" id='password' placeholder="Password:" value="root" />
                 <a class="button" onclick="setCookie()">Click here</a>
             </form>
+            <button class="button" id="register" style="font-size: small"><a href="/src/views/register.html">Sign up</a></button>
+            
             </div>
         </section>
         <section id="about">
@@ -65,13 +68,13 @@
         <p>We are a team of expert, we are building the education the world needs. </p>
         <div class="autoplay">
             <div class="block b_on">
-                <figure><img src="https://source.unsplash.com/random/200x200" alt="" />
+                <figure><img src="src/public/assets/images/photo5.jpg" alt="" />
                     <figcaption>Bill Gates</figcaption>
                 </figure>
                 <p>This is an amazing website</p>
             </div>
             <div class="block b_tw">
-                <figure><img src="https://source.unsplash.com/random/200x200?1" alt="" />
+                <figure><img src="src/public/assets/images/photo4.jpg" alt="" />
                     <figcaption>Mark Zukerberg</figcaption>
                 </figure>
                 <p>Better than my Facebook</p>
@@ -169,8 +172,8 @@
                 <div class=""></div><a href="./src/views/news.html">Read more</a></div>
         </div>
         </section>
-        <button class="button" id="newtheme" onclick="changeTheme('#0764FD')">new theme</button>
-        <button class="button" id="defaulttheme" onclick="changeTheme('#191a1d')">default theme</button>
+        <button class="button" id="newtheme" onclick="setTheme('#0764FD')">new theme</button>
+        <button class="button" id="defaulttheme" onclick="setTheme('#191a1d')">default theme</button>
     
     </main>
     <footer id="bottom">
@@ -247,25 +250,36 @@
             const email = $('#email').val();
             const password = $('#password').val();
             if(password == 'root' && email == 'admin@gmail.com'){
-                store();
+                
                 let key = cipher('password');
                 document.cookie = `email=${email}`;
-                document.cookie = `key=${key('root')}`;
+                document.cookie = `token=${key('root')}`;
                 window.location.href = './src/views/course.html'
-            }
-            else{
-                $('login').submit(function(e){
-                    return false;
+            } else{
+                let emailToVal = localStorage.getItem('email_domain')
+                if(email == emailToVal){
+                    console.log('true')
+                    let passtoval = localStorage.getItem('password_domain')
+                    const mydecipher = decipher('password')
+                    console.log(mydecipher(password))
+                    if(password == mydecipher(passtoval)){
+                        let key = cipher('password');
+                        document.cookie = `email=${email}`;
+                        document.cookie = `token=${key(password)}`;
+                        window.location.href = './src/views/course.html'
+                    } else{
+                        $('login').submit(function(e){
+                         return false;
                 })
             }
+                }
+            }
+            
            
         }
         
         // store information into local storage
-        function store(){
-            localStorage.setItem('email', 'admin@gmail.com');
-            localStorage.setItem('password', 'root');
-        }
+        
         function getCookie(c_name) {
                 if (document.cookie.length > 0) {
                 c_start = document.cookie.indexOf(c_name + "=");
@@ -281,20 +295,40 @@
             }
             return ""
         
-       
+        
+        }
+        function login(){
+            let email = getCookie('email')
+            if(email != ''){
+                let emailToVal = localStorage.getItem('email_domain')
+                if(email == emailToVal){
+                    return true
+                }
+            }
         }
         // check if the user is logged in
         function checkCookie(){
             if(getCookie('email') == ''){
                 $("#select").hide();
                 $("#login").show();
+                $('#register').show();
             } else{
-                if(getCookie('email') != "admin@gmail.com"){
-                   $("#select").hide();
-                   $("#login").show();
+                if(getCookie('email') != "admin@gmail.com" ){
+                    
+                    if(!login()){
+                        $("#select").hide();
+                        $("#login").show();
+                        $('#register').show();
+                    } else{
+                        $("#login").hide();
+                        $("#select").show()
+                        $('#register').hide();
+                    }
+                   
                 }else{
                     $("#login").hide();
                     $("#select").show()
+                    $('#register').hide();
                 }
             }
         }
@@ -316,6 +350,18 @@
                     $('#newtheme').show()
                     changeTheme('#191a1d')
                 }
+            }
+        }
+
+        function setTheme(colorcode){
+            if(colorcode == '#0764FD'){
+                $('#defaulttheme').show()
+                $('#newtheme').hide()
+                changeTheme('#0764FD')
+            } else{
+                $('#defaulttheme').hide()
+                $('#newtheme').show()
+                changeTheme('#191a1d')
             }
         }
         
