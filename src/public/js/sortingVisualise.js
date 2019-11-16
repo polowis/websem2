@@ -34,7 +34,7 @@ const sortingVisualize = (function() {
       let spacing = canvas.width / (width * n + n + 1);
       let bar_width = spacing * width;
   
-      // Draw a box around the outside of the canvas
+      // Draw a box around  the canvas
       ctx.strokeRect(0, 0, canvas.width, canvas.height);
   
       function convert(y) {
@@ -164,9 +164,9 @@ const sortingVisualize = (function() {
    */
     const bubblesort = (arraySort) => {
       
-      let n = arraySort.length();
-      for (let i = 0; i < n; i++) {
-        for (let j = 0; j < n - i - 1; j++) {
+      let arraySize = arraySort.length();
+      for (let i = 0; i < arraySize; i++) {
+        for (let j = 0; j < arraySize - i - 1; j++) {
           if (arraySort.lessThan(j + 1, j)) {
             arraySort.swap(j, j + 1);
           }
@@ -224,12 +224,12 @@ const sortingVisualize = (function() {
      */
   
     const odd_even_sort = (arraySort) => {
-      let n = arraySort.length();
+      let arraySize = arraySort.length();
       let sorted = false;
       while (!sorted) {
         sorted = true;
         for (let p = 0; p <= 1; p++) {
-          for (let i = p; i + 1 < n; i += 2) {
+          for (let i = p; i + 1 < arraySize; i += 2) {
             if (arraySort.lessThan(i + 1, i)) {
               arraySort.swap(i + 1, i);
               sorted = false;
@@ -448,7 +448,7 @@ const sortingVisualize = (function() {
           permutation.push(next_right - left);
           next_right++;
         } else {
-          throw 'Should not get here'
+          throw 'Should never get here'
         }
       }
   

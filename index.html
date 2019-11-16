@@ -258,10 +258,8 @@
             } else{
                 let emailToVal = localStorage.getItem('email_domain')
                 if(email == emailToVal){
-                    console.log('true')
                     let passtoval = localStorage.getItem('password_domain')
                     const mydecipher = decipher('password')
-                    console.log(mydecipher(password))
                     if(password == mydecipher(passtoval)){
                         let key = cipher('password');
                         document.cookie = `email=${email}`;
