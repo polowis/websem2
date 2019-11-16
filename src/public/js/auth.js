@@ -1,4 +1,8 @@
 
+/**
+ * @description encrype password
+ * @param {} salt 
+ */
 const cipher = salt => {
     let textToChars = text => text.split('').map(c => c.charCodeAt(0))
     let byteHex = n => ("0" + Number(n).toString(16)).substr(-2)
@@ -11,6 +15,10 @@ const cipher = salt => {
                 .join('')
 }
 
+/**
+ * @description decrypt password
+ * @param {*} salt 
+ */
 const decipher = salt => {
     let textToChars = text => text.split('').map(c => c.charCodeAt(0))
     let saltChars = textToChars(salt)
@@ -57,6 +65,7 @@ function checkCookie(){
 if(getCookie('email') == ''){
     window.location.replace('/index.html');
 } else{
+    // decrypt password and compare
     if(getCookie('email') != "admin@gmail.com"){
         let email= localStorage.getItem('email_domain')
         if(email != ""){

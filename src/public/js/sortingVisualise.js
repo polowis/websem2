@@ -4,9 +4,9 @@ const sortingVisualize = (function() {
     const COMPARE_COLOR = '#55FD07';
     const SWAP_COLOR = '#8C0AF1';
   
-    function randint(low, high) {
-      // Return a random integer in the range [low, high] inclusive.
-      return low + Math.floor((high - low + 1) * Math.random());
+    function randint(min, max) {
+      // Return a random integer 
+      return min + Math.floor((max - min + 1) * Math.random());
     }
   
     function draw(canvas, array, color) {
@@ -14,7 +14,7 @@ const sortingVisualize = (function() {
        * Draw on a canvas.
        *
        */
-      let width_ratio = 2;
+      let width = 2;
       let ctx = canvas.getContext('2d');
   
       // Clear the canvas
@@ -31,40 +31,38 @@ const sortingVisualize = (function() {
   
       // Figure out width of bars and spacing
       let n = array.length;
-      let spacing = canvas.width / (width_ratio * n + n + 1);
-      let bar_width = spacing * width_ratio;
+      let spacing = canvas.width / (width * n + n + 1);
+      let bar_width = spacing * width;
   
       // Draw a box around the outside of the canvas
       ctx.strokeRect(0, 0, canvas.width, canvas.height);
   
-      function convert_y(y) {
-        // Want convert_y(max) = 0, convert_y(min) = canvas.height`
-        let a = canvas.height / (min - max);
-        let b = max * canvas.height / (max - min);
-        return a * y + b;
+      function convert(y) {
+        let i = canvas.height / (min - max);
+        let j = max * canvas.height / (max - min);
+        return i * y + j;
       }
-  
-      // Draw a baseline for zero
-      let y_zero = convert_y(0);
+
+      let baseline = convert(0);
       ctx.beginPath();
-      ctx.moveTo(0, y_zero);
-      ctx.lineTo(canvas.width, y_zero);
+      ctx.moveTo(0, baseline);
+      ctx.lineTo(canvas.width, baseline);
       ctx.stroke();
   
-      // Now draw boxes
+      // draw columns
       let x = spacing;
       for (let i = 0; i < array.length; i++) {
         ctx.fillStyle = color[i];
-        let y = convert_y(array[i]);
+        let y = convert(array[i]);
         if (array[i] >= 0) {
-          ctx.fillRect(x, y, bar_width, y_zero - y);
+          ctx.fillRect(x, y, bar_width, baseline - y);
         } else {
-          ctx.fillRect(x, y_zero, bar_width, y - y_zero);
+          ctx.fillRect(x, baseline, bar_width, y - baseline);
         }
         x += spacing + bar_width;
       }
     }
-  
+    // main function
     function Animate(array, canvas, interval) {
       this._array = array;
       this._canvas = canvas;
@@ -165,6 +163,7 @@ const sortingVisualize = (function() {
    * @param {*} arraySort 
    */
     const bubblesort = (arraySort) => {
+      
       let n = arraySort.length();
       for (let i = 0; i < n; i++) {
         for (let j = 0; j < n - i - 1; j++) {
@@ -287,13 +286,13 @@ const sortingVisualize = (function() {
           pivot = left;
         } else {
           let middle = Math.round((left + right) / 2);
-          let LM = arraySort.lessThan(left, middle);
-          let MR = arraySort.lessThan(middle, right);
-          if (LM === MR) {
+          let leftmiddle = arraySort.lessThan(left, middle);
+          let middleright = arraySort.lessThan(middle, right);
+          if (leftmiddle === middleright) {
             pivot = middle;
-          } else if (LM && !MR) {
+          } else if (leftmiddle && !middleright) {
             pivot = arraySort.lessThan(left, right) ? right : left;
-          } else if (!LM && MR) {
+          } else if (!leftmiddle && middleright) {
             pivot = arraySort.lessThan(left, right) ? left : right;
           }
         }
@@ -308,7 +307,7 @@ const sortingVisualize = (function() {
       let pivot = choose_pivot(arraySort, pivot_type, left, right);
       arraySort.swap(pivot, right);
   
-      // Partition the array around the pivot.
+      // Partition the array 
       pivot = left;
       for (let i = left; i < right; i++) {
         if (arraySort.lessThan(i, right)) {
@@ -351,13 +350,13 @@ const sortingVisualize = (function() {
     }
   
   
-    function check_perm(perm) {
-      // Check to see if an array is a valid permutation.
-      let n = perm.length;
+    function check_permutation(permutation) {
+      //  see if an array is a valid permutation.
+      let n = permutation.length;
       let used = {};
       for (let i = 0; i < n; i++) {
-        if (used[perm[i]]) return false;
-        used[perm[i]] = true;
+        if (used[permutation[i]]) return false;
+        used[permutation[i]] = true;
       }
       for (let i = 0; i < n; i++) if (!used[i]) return false;
       return true;
@@ -369,23 +368,23 @@ const sortingVisualize = (function() {
        *  We represent a general permutation as a list of length N
        *  where each element is an integer from 0 to N - 1, with the
        *  interpretation that the element at index i will move to index
-       *  perm[i].
+       *  permutation[i].
        *
        *  In general any permutation can be written as a product of
        *  transpositions; we represent the transpostions as an array t of
        *  length-2 arrays, with the interpretation that we first swap
        *  t[0][0] with t[0][1], then swap t[1][0] with t[1][1], etc.
        *
-       *  @param {*} perm
+       *  @param {*} permutation
        *  @return transpositions: a list of transpositions.
        */
-    function perm_to_swaps(perm) {
+    function permutation_to_swaps(permutation) {
       
-      if (!check_perm(perm)) {
-        console.log(perm);
-        throw "Invalid permutation";
+      if (!check_permutation(permutation)) {
+        console.log(permutation);
+        throw "Invalid permutationutation";
       }
-      let n = perm.length;
+      let n = permutation.length;
       let used = [];
       for (let i = 0; i < n; i++) used.push(false);
       let transpositions = [];
@@ -393,11 +392,11 @@ const sortingVisualize = (function() {
       for (let i = 0; i < n; i++) {
         if (used[i]) continue;
         let cur = i;
-        if (perm[i] == i) used[i] = true;
-        while (!used[perm[cur]]) {
-          transpositions.push([cur, perm[cur]]);
+        if (permutation[i] == i) used[i] = true;
+        while (!used[permutation[cur]]) {
+          transpositions.push([cur, permutation[cur]]);
           used[cur] = true;
-          cur = perm[cur];
+          cur = permutation[cur];
         }
       }
   
@@ -429,7 +428,7 @@ const sortingVisualize = (function() {
   
       let next_left = left;
       let next_right = mid + 1;
-      let perm = [];
+      let permutation = [];
       for (let i = left; i <= right; i++) {
         let choice = null;
         if (next_left <= mid && next_right <= right) {
@@ -444,17 +443,17 @@ const sortingVisualize = (function() {
           choice = 'L';
         }
         if (choice === 'L') {
-          perm.push(next_left - left);
+          permutation.push(next_left - left);
           next_left++;
         } else if (choice === 'R') {
-          perm.push(next_right - left);
+          permutation.push(next_right - left);
           next_right++;
         } else {
           throw 'Should not get here'
         }
       }
   
-      let swaps = perm_to_swaps(perm);
+      let swaps = permutation_to_swaps(permutation);
       for (let i = 0; i < swaps.length; i++) {
         arraySort.swap(swaps[i][0] + left, swaps[i][1] + left);
       }
@@ -597,6 +596,6 @@ const sortingVisualize = (function() {
       'algorithms': algorithms,
     }
   
-    return _sorting;
+    
   
   })();
