@@ -119,6 +119,12 @@
                                     .map(charCode => String.fromCharCode(charCode))
                                     .join('')
                     }       
+                        /**
+                         * We encrypt the password using above functions and store them in localStorage
+                         * We create a cipher and encrypt any text after it. Same thing with decryption. 
+                         * Create a decipher and decrypt them with salt. 
+                         * 
+                         * */
                         if($('#password').val() != "" && $('#email').val() != ""){
                             password = $('#password').val()
                             let key = cipher('password');

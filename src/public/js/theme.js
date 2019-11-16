@@ -1,3 +1,5 @@
+// read cookie to check theme color
+// and change the css file accordingly.
 window.addEventListener('load', checkTheme, true)
         function changeTheme(color){
             document.cookie = `theme=${color}`

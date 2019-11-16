@@ -365,15 +365,14 @@ const sortingVisualize = (function() {
   /** 
        *  @description Convert a permutation to a sequence of transpositions.
        *  
-       *  We represent a general permutation as a list of length N
-       *  where each element is an integer from 0 to N - 1, with the
-       *  interpretation that the element at index i will move to index
-       *  permutation[i].
+       * Let say we have a list with a length of N (integer), each element is an
+       * integer represent from 0 to N - 1, with the interpretation that the element at 
+       * index [i] will move to index permutaion[i]
+       *  
+       * Any permutation can be written as a product of transpositions: 
+       * The traspositions can be presented as an array k of length n-2 arrays, 
+       * First swap k[0][0] with k[0][1], then swap k[1][0] with k[1][1] and so on,
        *
-       *  In general any permutation can be written as a product of
-       *  transpositions; we represent the transpostions as an array t of
-       *  length-2 arrays, with the interpretation that we first swap
-       *  t[0][0] with t[0][1], then swap t[1][0] with t[1][1], etc.
        *
        *  @param {*} permutation
        *  @return transpositions: a list of transpositions.

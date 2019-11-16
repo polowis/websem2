@@ -1,4 +1,6 @@
 
+
+
 /**
  * @description encrype password
  * @param {} salt 
@@ -56,7 +58,10 @@ return ""
 // check if user is logged in, redirect to home page if not logged in. 
 
 /**
- * 
+ * @summary Check the cookie to see it the default value equal to default email
+ * in case, it's not, we move to the next step. Assuming the email is not null, 
+ * we compare the email in our local storage with email in cookie value, then check the password via token property
+ * If all checks are passed, user is valid to go to the current page, otherwise, return to index home page
  * @function checkCookie
  * @description check if cookie is set
  * @returns url
