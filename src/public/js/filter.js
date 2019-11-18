@@ -2,10 +2,10 @@
  *
  * @Name FilterJS
  * @Version : 1.1.0
- * @Programmer : Polowis
+ * @Programmer : Hung Tran
  * @Date : 
- * @Released under 
- * @Repository :
+ * @Released 
+ * @Repository : 
  *
  **/
 (function(window, document) {

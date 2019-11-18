@@ -4,8 +4,12 @@ const sortingVisualize = (function() {
     const COMPARE_COLOR = '#55FD07';
     const SWAP_COLOR = '#8C0AF1';
   
+    /**
+     * Return random integer
+     * @param {*} min 
+     * @param {*} max 
+     */
     function randint(min, max) {
-      // Return a random integer 
       return min + Math.floor((max - min + 1) * Math.random());
     }
   
@@ -39,8 +43,7 @@ const sortingVisualize = (function() {
   
       function convert(y) {
         let i = canvas.height / (min - max);
-        let j = max * canvas.height / (max - min);
-        return i * y + j;
+        return y * i + 600;
       }
 
       let baseline = convert(0);
@@ -159,7 +162,7 @@ const sortingVisualize = (function() {
     If the first item should be after the second item, swap them.
     Compare the second item to the third item.
     If the second item should be after the third item, swap them.
-    Continue until the end of the data set is reached. This process repeared until the array is sorted
+    Continue until the end of the array is reached. This process repeated until the array is sorted
    * @param {*} arraySort 
    */
     const bubblesort = (arraySort) => {
